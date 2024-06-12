@@ -42,6 +42,7 @@ VOID thread_usb_entry(ULONG thread_input)
             // remove trailing newline
             buffer[strlen(buffer) - 1] = '\0';
             LOG_I("You typed: '%s'", buffer);
+            printf("You typed: '%s'\r\n", buffer);
         }
 
         tx_thread_sleep(MS_TO_TICKS(100));
