@@ -1,0 +1,105 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build",
+      "type": "cmake",
+      "command": "build",
+      "problemMatcher": "$gcc",
+      "group": {
+        "kind": "build"
+      },
+      "presentation": {
+        "echo": false,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "icon": {
+        "id": "gear"
+      }
+    },
+    {
+      "label": "Flash (JLink)",
+      "type": "shell",
+      "command": "${workspaceFolder}/.vscode/flash.ps1",
+      "args": [
+        "${command:cmake.launchTargetPath}",
+        "jlink"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "dependsOn": [
+        "Build"
+      ],
+      "presentation": {
+        "echo": false,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "icon": {
+        "id": "debug-stackframe"
+      }
+    },
+    {
+      "label": "Flash (JLink RTT)",
+      "type": "shell",
+      "command": "${workspaceFolder}/.vscode/flash.ps1",
+      "args": [
+        "${command:cmake.launchTargetPath}",
+        "jlink-rtt"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "dependsOn": [
+        "Build"
+      ],
+      "presentation": {
+        "echo": false,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": false
+      },
+      "runOptions": {
+        "instanceLimit": 2
+      },
+      "icon": {
+        "id": "debug-stackframe-focused"
+      }
+    },
+    {
+      "label": "Flash (ST-Link)",
+      "type": "shell",
+      "command": "${workspaceFolder}/.vscode/flash.ps1",
+      "args": [
+        "${command:cmake.launchTargetPath}",
+        "stlink"
+      ],
+      "group": {
+        "kind": "build"
+      },
+      "presentation": {
+        "echo": false,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "icon": {
+        "id": "debug-stackframe"
+      }
+    }
+  ]
+}

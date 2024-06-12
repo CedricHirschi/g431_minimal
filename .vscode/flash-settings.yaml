@@ -1,0 +1,3 @@
+device: 'STM32G431CB'
+interface: 'SWD'
+speed: 8000
