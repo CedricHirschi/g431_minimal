@@ -1,3 +1,4 @@
 device: 'STM32G431CB'
+openocd: 'stm32g4x.cfg'
 interface: 'SWD'
 speed: 8000

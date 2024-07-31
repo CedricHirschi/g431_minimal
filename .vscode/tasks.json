@@ -100,6 +100,30 @@
       "icon": {
         "id": "debug-stackframe"
       }
+    },
+    {
+      "label": "Flash (CMSIS-DAP)",
+      "type": "shell",
+      "command": "${workspaceFolder}/.vscode/flash.ps1",
+      "args": [
+        "${command:cmake.launchTargetPath}",
+        "cmsis-dap"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "presentation": {
+        "echo": false,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "icon": {
+        "id": "debug-stackframe"
+      }
     }
   ]
 }

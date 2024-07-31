@@ -80,9 +80,30 @@ elseif ($method -eq "jlink-rtt") {
     # Remove JLink script
     Remove-Item flash.jlink
 }
-elseif($method -eq "stlink") {
+elseif ($method -eq "stlink") {
     # Run STLink
     & st-flash write $fileName 0x8000000
+}
+elseif ($method -eq "cmsis-dap") {
+    # Run OpenOCD
+    $openocdTarget = $settings.openocd
+@"
+source [find interface/cmsis-dap.cfg]
+adapter speed 8000
+transport select swd
+source [find target/$openocdTarget]
+"@ | Out-File flash.cfg -Encoding ASCII
+
+    # Replace backslashes with forward slashes
+    $fileName = $fileName -replace "\\", "/"
+
+    # Replace .bin with .elf
+    $fileName = $fileName -replace ".bin", ".elf"
+
+    & openocd -f flash.cfg -c "program $fileName verify reset exit"
+
+    # Remove OpenOCD script
+    Remove-Item flash.cfg
 }
 else {
     Write-Host "Unknown programming method: $method" -ForegroundColor Red
