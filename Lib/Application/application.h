@@ -3,6 +3,6 @@
 
 #include "tx_api.h"
 
-UINT application_define(VOID *memory_ptr);
+unsigned application_define(VOID *memory_ptr);
 
 #endif // _APPLICATION_H

@@ -7,11 +7,11 @@
 #define MS_TO_TICKS(ms) ((ms * TX_TIMER_TICKS_PER_SECOND / 1000))
 
 TX_THREAD thread_main_handle;
-ULONG thread_main_stack[1024 / sizeof(ULONG)];
+uint32_t thread_main_stack[1024 / sizeof(uint32_t)];
 TX_THREAD thread_usb_handle;
-ULONG thread_usb_stack[1500 / sizeof(ULONG)];
+uint32_t thread_usb_stack[1500 / sizeof(uint32_t)];
 
-VOID thread_main_entry(ULONG thread_input)
+void thread_main_entry(uint32_t thread_input)
 {
     UNUSED(thread_input);
     LOG_D("Main Thread started");
@@ -27,7 +27,7 @@ VOID thread_main_entry(ULONG thread_input)
     }
 }
 
-VOID thread_usb_entry(ULONG thread_input)
+void thread_usb_entry(uint32_t thread_input)
 {
     UNUSED(thread_input);
     LOG_D("USB Thread started");
@@ -58,10 +58,10 @@ void stack_error_handler(TX_THREAD *ptr)
     }
 }
 
-UINT application_define(VOID *memory_ptr)
+unsigned application_define(void *memory_ptr)
 {
     UNUSED(memory_ptr);
-    UINT ret = TX_SUCCESS;
+    unsigned ret = TX_SUCCESS;
 
     ret = tx_thread_stack_error_notify(stack_error_handler);
     if (ret != TX_SUCCESS)
